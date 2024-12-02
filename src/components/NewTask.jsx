@@ -22,7 +22,7 @@ const NewTask = ({data}) => {
     
     return (
         <>
-        <div className='flex shrink-0 h-full w-[435px] max-sm:w-auto p-5 justify-between flex-col bg-yellow-400 rounded-xl'>
+        <div className='flex shrink-0 h-full w-[435px] max-sm:w-auto p-5 justify-between flex-col bg-yellow-500 rounded-xl'>
             <div className='flex items-center justify-between'>
                 <h3 className='bg-red-600 text-sm px-3 py-1 rounded'>{data.category}</h3>
                 <h4 className=''>{data.status}</h4>
@@ -59,13 +59,13 @@ const NewTask = ({data}) => {
             }`}
             disabled={data.status === 'completed'}
           >
-            {data.status === <span className='text-white'>'completed'</span> ? 'Completed' : 'Mark as Complete'}
+            {data.status === <span className='text-green-500                                                        '>'completed'</span> ? 'Completed' : 'Mark as Complete'}
           </button>
         )}
         {data.status === 'rejected' && (
           <button
             disabled
-            className="bg-gray-400 w-full text-white py-3 px-3 rounded cursor-not-allowed"
+            className="bg-gray-400 hidden w-full text-white py-3 px-3 rounded cursor-not-allowed"
           >
             Rejected Task
           </button>
