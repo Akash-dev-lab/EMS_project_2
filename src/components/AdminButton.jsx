@@ -5,7 +5,7 @@ const AdminButton = () => {
   const navigate = useNavigate();
 
   const goToAdminLogin = () => {
-    navigate('/admin-login'); // Redirect to the AdminLogin page
+    navigate('/admin-login');
   };
 
   return (

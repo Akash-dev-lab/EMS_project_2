@@ -7,19 +7,18 @@ function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const [error, setError] = useState(''); // State to manage error message
+  const [error, setError] = useState('');
   const [shake, setShake] = useState(false);
-  const [showPopup, setShowPopup] = useState(false); // State to manage popup visibility
+  const [showPopup, setShowPopup] = useState(false);
   const { login } = useContext(AuthContext);
 
   const handleRegister = () => {
 
-    // Check if fields are empty
     if (!username.trim() || !password.trim()) {
-      setError('Fill all inputs to Register'); // Set error message
-      setShake(true); // Trigger shake animation
+      setError('Fill all inputs to Register');
+      setShake(true);
       setTimeout(() => setShake(false), 500);
-      return; // Stop further execution
+      return;
     }
 
     const registeredUsers = JSON.parse(localStorage.getItem('users')) || [];
@@ -27,22 +26,20 @@ function Register() {
 
     if (userExists) {
       alert('User already exists. Please log in.');
-      navigate('/'); // Redirect to the login page
+      navigate('/');
       return;
     }
 
-    // Add new user
     registeredUsers.push({ username, password, userType: 'user' });
     localStorage.setItem('users', JSON.stringify(registeredUsers));
 
-     // Update auth state and redirect to the user dashboard
-     login(username, 'user'); // Set auth state as authenticated and user type as 'user'
+     login(username, 'user');
 
     setShowPopup(true);
     setTimeout(() => {
       setShowPopup(false);
-      navigate('/user'); // Redirect to the user dashboard
-    }, 1000); // Show popup for 1 second
+      navigate('/user');
+    }, 1000);
   };
 
   useEffect(() => {
@@ -55,7 +52,6 @@ function Register() {
     <>
     <div className='w-full max-sm:w-full max-sm:justify-center flex max-sm:gap-3 justify-between max-sm:flex items-center px-9 py-6'>
         <h1 className='text-xl max-sm:text-md border-emerald-500 border max-sm:font-bold px-3 py-1 rounded font-bold'>Employee Management System</h1>
-        {/* <AdminButton /> */}
       </div>
       
     <div className='w-screen mt-52 text-center justify-center items-center flex '>
@@ -88,20 +84,3 @@ function Register() {
 }
 
 export default Register;
-
-
-
-{/* <div className="register-container">
-      <h2>Register </h2>
-      <input
-        
-      />
-      <input
-        type="password"
-        required
-        placeholder="Password"
-        
-        
-      />
-      <button onClick={handleRegister}>Register</button>
-    </div> */}

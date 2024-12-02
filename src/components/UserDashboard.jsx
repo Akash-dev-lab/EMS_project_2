@@ -12,7 +12,6 @@ const UserDashboard = () => {
   const username = auth?.username;
 
   const userTasks = tasks.filter((task) => task.assignedTo === username);
-  console.log(userTasks)
 
   return (
     <div className="w-screen flex flex-col justify-between h-auto p-10 max-sm:p-7">
@@ -26,7 +25,6 @@ const UserDashboard = () => {
         
         <div className='mt-5 max-sm:mt-10'>
           <TaskSection />
-          
           <TaskList />
         </div>
         

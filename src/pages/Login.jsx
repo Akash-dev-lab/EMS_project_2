@@ -17,7 +17,7 @@ const Login = () => {
   const { login } = useContext(AuthContext);
 
   const handleLogin = (e) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
 
     const { username, password, userType } = credentials;
 
@@ -25,16 +25,15 @@ const Login = () => {
     if (!username.trim() || !password.trim()) {
       setError('Please fill in all fields.');
       setShake(true);
-      setTimeout(() => setShake(false), 500); // Remove shake class after animation
+      setTimeout(() => setShake(false), 500);
       return;
     }
 
-    setError(''); // Clear previous error message
+    setError('');
 
     // Fetch registered users from localStorage
     const registeredUsers = JSON.parse(localStorage.getItem('users')) || [];
 
-    // Check if user exists
     const user = registeredUsers.find(
       (u) =>
         u.username === username &&
@@ -43,7 +42,6 @@ const Login = () => {
     );
 
     if (user) {
-      // User found: Set auth state in localStorage
       localStorage.setItem(
         'auth',
         JSON.stringify({
@@ -53,12 +51,11 @@ const Login = () => {
         })
       );
 
-      // Navigate to dashboard based on userType
-      // navigate(`/${user.userType || 'user'}`);
+      
       login(user.username, 'user')
       navigate('/user')
     } else {
-      // User not found: Show error message
+      
       setError('Invalid username or password.');
       setShake(true);
       setTimeout(() => setShake(false), 500);
@@ -103,7 +100,7 @@ const Login = () => {
                 >
                   {error}
                 </div>
-                {/* Link to the registration page */}
+                
                 <Link
                   to="/register"
                   className="font-light underline text-sm text-blue-600 hover:text-blue-400"

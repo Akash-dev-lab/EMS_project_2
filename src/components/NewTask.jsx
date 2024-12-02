@@ -8,8 +8,8 @@ const NewTask = ({data}) => {
     
     const handleAcceptTask = () => {
         if (data.status !== 'accepted') {
-          updateTaskStatus(data.id, 'accepted'); // Update task status to 'accepted'
-          setAcceptedTaskCount(acceptedTaskCount + 1); // Increment the accepted task count
+          updateTaskStatus(data.id, 'accepted');
+          setAcceptedTaskCount(acceptedTaskCount + 1);
         }
       };
     

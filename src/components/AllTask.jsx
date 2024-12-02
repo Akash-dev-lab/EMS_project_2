@@ -20,8 +20,6 @@ const AllTask = () => {
                               <h2 className='w-1/5 text-lg font-medium'>{elem.assignedTo}</h2>
                               <h3 className='w-1/5 text-lg font-medium text-blue-400'>{taskCount}</h3>
                               <h5 className='w-1/5 text-lg font-medium text-yellow-600'>{elem.status}</h5>
-                              {/* <h5 className='w-1/5 text-lg font-medium text-white'>{elem.taskCount.completed}</h5>
-                              <h5 className='w-1/5 text-lg font-medium text-red-600'>{elem.taskCount.failed}</h5> */}
                          </div>
                     })}
                </div>

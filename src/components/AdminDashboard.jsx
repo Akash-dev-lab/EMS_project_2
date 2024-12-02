@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import Header from './Header';
 import CreateTask from './CreateTask';
 import AllTask from './AllTask';

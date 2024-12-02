@@ -15,8 +15,8 @@ const AdminLogin = () => {
     const { username, password } = credentials;
 
     if (!username || !password) {
-      setError('Fill Admin Details'); // Set error message
-      setShake(true); // Trigger shake animation
+      setError('Fill Admin Details');
+      setShake(true);
       setTimeout(() => setShake(false), 500);
       return
     }
@@ -27,8 +27,8 @@ const AdminLogin = () => {
       setShowPopup(true);
       setTimeout(() => {
         setShowPopup(false);
-        navigate('/admin'); // Redirect to the admin dashboard
-      }, 1000); // Show popup for 1 second
+        navigate('/admin');
+      }, 1000);
     } else {
       setError('Invalid username or password');
       setShake(true);
@@ -40,7 +40,6 @@ const AdminLogin = () => {
     <>
     <div className='w-full max-sm:w-full max-sm:justify-center flex max-sm:gap-3 justify-between max-sm:flex items-center px-9 py-6'>
         <h1 className='text-xl max-sm:text-md border-emerald-500 border max-sm:font-bold px-3 py-1 rounded font-bold'>Employee Management System</h1>
-        {/* <AdminButton /> */}
       </div>
 
     <div className='w-screen mt-52 text-center justify-center items-center flex '>
@@ -62,7 +61,7 @@ const AdminLogin = () => {
             </div>
           </div>
           <button onClick={(e) => {
-            e.preventDefault(); // Prevent default form submission
+            e.preventDefault();
             handleLogin();
           }}
             className='bg-teal-500 hover:bg-teal-700 p-2 rounded-full text-white font-bold'>Login as Admin</button>
@@ -70,16 +69,16 @@ const AdminLogin = () => {
 
         {/* Popup */}
         {showPopup && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
-            <div className="bg-white w-2/12 h-2/6 p-4 justify-center gap-9 flex flex-col items-center rounded-lg">
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-90">
+            <div className="bg-transparent max-sm:w-2/3 max-md:w-2/3 w-2/12 h-2/6 p-4 justify-center gap-9 flex flex-col items-center rounded-lg">
             <div>
-              <p className="text-xl text-black font-bold">Hello Admin 😊</p>
+              <p className="text-xl font-bold">Hello Admin 😊</p>
               </div>
               <span>
-                <svg className="animate-spin h-6 rounded-md bg-emerald-600 w-6 mr-3" viewBox="0 0 24 24">
+                <svg className="animate-spin h-6 rounded-md bg-white w-6 mr-3" viewBox="0 0 24 24">
                 </svg>
               </span>
-              <p className="text-sm text-center text-black">You are Logging in...</p>
+              <p className="text-sm text-center">You are Logging in...</p>
             </div>
           </div>
         )}
@@ -91,26 +90,3 @@ const AdminLogin = () => {
 };
 
 export default AdminLogin;
-
-
-{/* <div className="flex flex-col items-center justify-center">
-      <h1 className="text-2xl font-bold mb-4">Admin Login</h1>
-      <input
-        type="text"
-        placeholder="Admin Username"
-        className="text-black border px-4 py-2 mb-2"
-        onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
-      />
-      <input
-        type="password"
-        placeholder="Admin Password"
-        className="border text-black px-4 py-2 mb-2"
-        onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
-      />
-      <button
-        className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600"
-        onClick={handleLogin}
-      >
-        Login as Admin
-      </button>
-    </div> */}

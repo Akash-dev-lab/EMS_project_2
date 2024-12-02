@@ -3,7 +3,7 @@ import { TaskContext } from '../context/TaskContext';
 import { v4 as uuid } from 'uuid';
 
 const CreateTask = () => {
-    const { tasks, addTask } = useContext(TaskContext);
+    const { addTask } = useContext(TaskContext);
     const [newTask, setNewTask] = useState({ title: '', assignedTo: '', Date: '', category: '', description: '' });
     const [error, setError] = useState('');
     const [showPopup, setShowPopup] = useState(false);
@@ -28,7 +28,7 @@ const CreateTask = () => {
 
     return (
         <div className='p-5 bg-[#1c1c1c] rounded'>
-            <form onSubmit={(e)=>{
+            <form onSubmit={(e) => {
                 handleAddTask(e)
             }} className='flex max-sm:flex-col flex-wrap w-full px-5 items-center justify-between'>
                 <div className='w-1/2 max-sm:w-full'>
@@ -67,50 +67,8 @@ const CreateTask = () => {
                 </div>
             )}
 
-            {/* <ul>
-                {tasks.map((task) => (
-                    <li className='text-white' key={task.id}>
-                        {task.title} - {task.assignedTo} ({task.status})
-                    </li>
-                ))}
-            </ul> */}
-
         </div>
     )
 }
 
 export default CreateTask
-
-
-{/* <div>
-                <input
-                    className='text-black'
-                    type="text"
-                    placeholder="Task Title"
-                    value={newTask.title}
-                    onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-                />
-                <input
-                    className='text-black'
-                    type="text"
-                    placeholder="Assign To"
-                    value={newTask.assignedTo}
-                    onChange={(e) => setNewTask({ ...newTask, assignedTo: e.target.value })}
-                />
-                <button onClick={handleAddTask}>Add Task</button>
-            </div>
-            {/* Error Popup */}
-// {showPopup && (
-//     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-//         <div className="bg-white p-4 rounded-lg shadow-lg">
-//             <p className="text-red-500 font-bold">{error}</p>
-//         </div>
-//     </div>
-// )}
-// <ul>
-//     {tasks.map((task) => (
-//         <li key={task.id}>
-//             {task.title} - {task.assignedTo} ({task.status})
-//         </li>
-//     ))}
-// </ul> */}
