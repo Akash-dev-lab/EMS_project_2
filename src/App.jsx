@@ -1,51 +1,31 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Login from './components/Auth/Login'
-import EmployeeDashboard from './components/Dashboard/EmployeeDashboard'
-import AdminDashboard from './components/Dashboard/AdminDashboard'
-import { getLocalStorage, setLocalStorage } from './utils/localStorage'
-import { AuthContext } from './context/AuthProvider'
-import { data } from 'autoprefixer'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { TaskProvider } from './context/TaskContext';
+import Login from './pages/Login';
+import AdminDashboard from './components/AdminDashboard';
+import UserDashboard from './components/UserDashboard';
+import Register from './pages/Register';
+import AdminLogin from './pages/AdminLogin';
+import AdminRoute from './routes/AdminRoute';
 
-const App = () => {
-
-  const [user, setuser] = useState(null)
-  const [LoggedInUserData, setLoggedInUserData] = useState(null);
-  const [userData, setUserData] = useContext(AuthContext)
-  // console.log(authData)
-
-  useEffect(()=>{
-
-    const loggedInUser = localStorage.getItem('loggedInUser') 
-    if(loggedInUser){
-    const userData = JSON.parse(loggedInUser)
-    setuser(userData.role)
-    setLoggedInUserData(userData.data)
-  }
-  }, [])
-
-  const HandleLogin = (email, password) => {
-    if(email == 'admin@me.com' && password == '123') {
-     setuser('admin')
-     localStorage.setItem('loggedInUser', JSON.stringify({role: 'admin'}))
-    } else if (userData) {
-      const employee = userData.find((e)=> email == e.email && e.password == password)
-      if(employee){
-     setuser('employee')
-     setLoggedInUserData(employee)
-     localStorage.setItem('loggedInUser', JSON.stringify({role: 'employee', data: employee}))
-    }
-    }
-    else {
-      alert('Invalid Credentials');
-    }
-  }
+function App() {
 
   return (
-    <>
-    {!user ? <Login handlelogin={HandleLogin} /> : ''}
-    {user == 'admin' ? <AdminDashboard changeUser={setuser} /> : (user == 'employee' ? <EmployeeDashboard changeUser={setuser} data={LoggedInUserData} /> : null)}
-    </>
-  )
+    <AuthProvider>
+      <TaskProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+            <Route path="/user" element={<UserDashboard />} />
+            <Route path="/admin-login" element={<AdminLogin />} />
+          </Routes>
+        </Router>
+      </TaskProvider>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;
